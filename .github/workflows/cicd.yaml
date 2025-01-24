@@ -1,0 +1,27 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Update the system and install required packages
+      - name: Update system and install packages
+        run: |
+          sudo yum update -y
+          sudo yum install -y git curl wget
+
+      # Step 3: Run a custom script
+      - name: Run custom commands
+        run: |
+          echo "Running custom commands..."
+          echo "Script execution completed."
